@@ -2,6 +2,14 @@
 
 ## Download Docker Images
 
+Wolverine OS provides two Docker image families:
+
+* **wos-dev**: This is a lightweight Docker image that is designed to work with well-maintained service environments. It is typically used for developing indicators and other algorithm-based applications. The image provides a range of tools and utilities for development and testing, including C++ libraries, Python packages, and other dependencies.
+
+* **wos-dev-s**: This is a heavier Docker image that provides a standalone environment for developing and testing trading strategies. However it is not ready to be used in very large scale applications. Kubernetes usages will extend `wos-dev-s` to be more data capacity and computation scalable state. It includes all the backend web services and C++ infrastructure needed to build a standalone environment without relying on external service environments. The image is designed for more advanced development work, such as extending the C++ services or building Python-C++ modules.
+
+Both Docker images provide a convenient and portable way to work with Wolverine OS. They allow you to quickly set up and configure an environment for developing and testing trading strategies, without having to worry about dependencies or installation issues. Whether you're a quantitative trader, a financial analyst, or a software developer, Wolverine OS Docker images provide a powerful and flexible platform for developing and testing trading strategies in a secure and reliable environment.
+
 ### Intel X86_64 architectures
 
 #### Development environment
@@ -65,17 +73,46 @@ Wolverine OS consists of two main executable branches:
 
 The Wolverine OS system is designed to have two main parts:
 
-* **Global**: This is a read-only data repository that provides global market real-time and historical multi-timeframe sampled data. If you want to build your own private environment from scratch, the best practice is to work with the global environment. However, please note that we do not publicly give access to our global service. If you are interested, please contact us.
+* **Global**: This is a read-only data repository that provides global market real-time and historical multi-timeframe sampled data. Global environment is maintained by us. If you want to build your own private environment from scratch, the best practice is to work with the global environment. However, please note that we do not publicly give access to our global service. If you are interested, please contact us.
 
-* **Private**: This is a writable data repository that users can use to perform experiments and trading practices. A system without access to the global repository can exist without any issues. If you want to use out-of-the-box data and services to perform experiments, you can run a standalone private-only system and use indicator-based solutions or our open API to develop an advanced data pumping service, such as dirac-client, to import raw data. You can then use the algorithm development module to process and generate more indicators as needed.
+* **Private**: This is a writable data repository that users can use to perform experiments and trading practices. A system without access to the global repository can exist without any issues. If you don't want to use out-of-the-box data and services  which will involve global environment to perform experiments, you can run a standalone private-only system and use indicator-based solutions or our open API to develop an advanced data pumping service, such as dirac-client, to import raw data. You can then use the algorithm development module to process and generate more indicators as needed.
 
 By separating the global and private repositories, Wolverine OS provides a flexible and secure environment for developing and testing trading strategies. The dev and prod branches also provide different levels of compatibility with service environments, allowing you to choose the appropriate branch for your needs.
 
 ### Chart
 
+![alt text](docs/imgs/wos-charts.png)
+
+The chart module in Wolverine OS provides a rich and interactive visual environment for developing and testing trading strategies. The chart module is designed to be easy to use, with a range of both dedicated algorithm models in python and simple one-ticker indicator in formula language (we call it Feynman language after the great Nobel prize winner) for drawing fancy charts and indicator widgets.
+
+If you are familiar with Chinese financial software, you will appreciate the ability to import simple one-ticker indicator source code and seamlessly see the results in the chart module. The module also supports multi-timeframe sampled data, allowing for detailed analysis and candlestick-based strategies.
+
+In addition to its powerful visualization capabilities, the chart module also includes an embedded order entry module, allowing for seamless trade execution and monitoring. User doodles can also be created using the indicator language, providing a flexible and customizable environment for experimentation and analysis.
+
+Whether you're a quantitative trader, a financial analyst, or a software developer, Wolverine OS chart module provides a powerful and flexible platform for developing and testing trading strategies in a secure and reliable environment. With its rich and interactive graphics and advanced analysis tools, the chart module is the perfect tool for exploring market trends and developing new trading strategies.
+
 ### Formula
 
 #### Feynman Language
+
+Feynman language is based on popular single ticker indicator language which can easily be found in Wind(万得) and Straight Flush(同花顺) and a wide range of similar competitors.
+
+Feynman language has more features than the orignal version of indicator language including:
+
+* User defined functions
+* Global cross references
+* Doodles
+* Seamless data interface from global and private dual environments
+
+BOLL
+
+```
+variable : N= 15, P= 3, BBI=0;
+BBI:=(MA(CLOSE,3)+MA(CLOSE,6)+MA(CLOSE,12)+MA(CLOSE,24))/4;
+DWN:(BBI-P*STD(BBI,N)),LINETHICK1, COLORFF0000;
+UPR:(BBI+P*STD(BBI,N)),LINETHICK1, COLORFFA13B;
+MID: BBI, LINETHICK1, COLOR7E7AFF;
+```
 
 ### Model Development
 
