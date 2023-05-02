@@ -154,9 +154,28 @@ Users can choose to use an IDE within the application or VSCode for backtesting,
 
 #### Indictator
 
+Sophisticated quantitative models are often built on a forest of single indicators, which may be developed using raw external market data or a multi-tier pipeline referencing each other in a complex manner.
+
+Wolverine OS provides an indicator backtesting system that allows you to develop single low-level indicators that don't reference any other indicators but only use external data or referencing the live indicators arbitrarily when you are properly authorized. Each backtesting instance is separate, so users can compare multiple backtesting generations of the same model. Different revisions of the output indicator value will also be saved.
+
+The indicator output can be visualized in the chart module, or more widely adopted by our users, it can be used seamlessly with Feynman language. Wrapped by Feynman language, all the interactive functions of the language engine can be used with no extra effort.
+
+After a series of iterative backtests, users can let an indicator go live, which can be used to solve very challenging real-time problems like HFT. Wolverine OS provides a flexible and powerful platform for developing, testing, and deploying sophisticated indicators, giving you the tools you need to succeed in today's dynamic financial markets.
+
+
 #### Strategy
 
+A strategy is another form of quantitative model that is more focused on signal execution. Compared to indicators, strategies are more focused on how to execute a set of high-quality trading signals.
+
+Signal execution is a very different domain from numeric computing-based development, which is heavily used in indicator development. Signal execution is more real-time, and as it becomes more low-latency, quantum effects become increasingly significant. Meanwhile, account execution involves different money capacity levels ranging from single-lot trading accounts to large-scale production accounts used by institutional trading firms. Dividing a big trading account into smaller sub-accounts and mapping each sub-account to follow different quantitative signals can make the situation complex beyond most users' imaginations.
+
+To solve these problems, a wide range of techniques are involved, such as slippage simulation, error correction mechanisms, and order book prediction.
+
+Using the strategy backtesting function together with indicator backtesting, users can thoroughly test their strategy theoretically and almost practically. Multi-physical account and multi-basket account level backtesting can be well-supported in this subsystem. Wolverine OS provides a flexible and powerful platform for developing, testing, and deploying sophisticated trading strategies, giving you the tools you need to succeed in today's dynamic financial markets.
+
 ### Mark To Market
+
+### Simulated trading
 
 ### Account Management
 
