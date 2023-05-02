@@ -10,13 +10,13 @@
 
 Wolverine OS provides two Docker image families:
 
-* **wos-dev**: This is a lightweight Docker image that is designed to work with well-maintained service environments. It is typically used for developing indicators and other algorithm-based applications. The image provides a range of tools and utilities for development and testing, including C++ libraries, Python packages, and other dependencies.
+* **wos-?**: This is a lightweight Docker image that is designed to work with well-maintained service environments. It is typically used for developing indicators and other algorithm-based applications. The image provides a range of tools and utilities for development and testing, including C++ libraries, Python packages, and other dependencies.
 
-* **wos-dev-s**: This is a heavier Docker image that provides a standalone environment for developing and testing trading strategies. It includes all the backend web services and C++ infrastructure needed to build a standalone environment without relying on external service environments. The image is designed for more advanced development work, such as extending the C++ services or building Python-C++ modules.
+* **wos-?-s**: This is a heavier Docker image that provides a standalone environment for developing and testing trading strategies. It includes all the backend web services and C++ infrastructure needed to build a standalone environment without relying on external service environments. The image is designed for more advanced development work, such as extending the C++ services or building Python-C++ modules.
 
 Both Docker images provide a convenient and portable way to work with Wolverine OS. They allow you to quickly set up and configure an environment for developing and testing trading strategies, without having to worry about dependencies or installation issues. Whether you're a quantitative trader, a financial analyst, or a software developer, Wolverine OS Docker images provide a powerful and flexible platform for developing and testing trading strategies in a secure and reliable environment.
 
-`wos-dev-s` is an excellent all-in-one starting point that is suitable for individual or medium team users with small to medium data and computing scale requirements. However, it is not yet ready for use in very large-scale practices, such as providing data and computing capabilities to a large community which is the designated function scope of our project. For such use cases, Kubernetes can be used to extend wos-dev-s to a highly scalable state, allowing for the use of many CPUs and GPUs across multiple physical or virtual hosts. With Kubernetes, Wolverine OS can scale to meet the needs of even the most demanding trading strategies and financial quantitative experiments.
+`wos-?-s` is an excellent all-in-one starting point that is suitable for individual or medium team users with small to medium data and computing scale requirements. However, it is not yet ready for use in very large-scale practices, such as providing data and computing capabilities to a large community which is the designated function scope of our project. For such use cases, Kubernetes can be used to extend wos-dev-s to a highly scalable state, allowing for the use of many CPUs and GPUs across multiple physical or virtual hosts. With Kubernetes, Wolverine OS can scale to meet the needs of even the most demanding trading strategies and financial quantitative experiments.
 
 ### Intel X86_64 architectures
 
@@ -208,9 +208,6 @@ The Mark To Market module provides a reliable and efficient tool for tracking th
 
 ## Examples
 
-This repository is to demonstrate the basic usage of `glacierx/wos-dev` image and `glacierx/wos-dev-s` image. They are designed to provide indicator based development, debugging, monitoring functions and a all-in-one standalone server and client envirionment for testing and devlopment purpose respectively.
-
-You can find many templates of indicators development on Wolverine OS. 
 
 
 

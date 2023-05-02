@@ -1,0 +1,64 @@
+{
+    "private": {
+        "export": {
+            "XXX": {
+                "is_tradable": 0,
+                "fields": [
+                    "_preserved_field",
+                    "direction",
+                    "mas",
+                    "mal"
+                ],
+                "defs": [
+                    {
+                        "field_type": "int64",
+                        "precision": 0,
+                        "multiple": 1,
+                        "display_name": "",
+                        "sample_type": 0
+                    },
+                    {
+                        "field_type": "int",
+                        "precision": 6,
+                        "multiple": 1,
+                        "display_name": "direction",
+                        "sample_type": 0
+                    },
+                    {
+                        "field_type": "double",
+                        "precision": 6,
+                        "multiple": 1,
+                        "display_name": "mas",
+                        "sample_type": 0
+                    },
+                    {
+                        "field_type": "double",
+                        "precision": 6,
+                        "multiple": 1,
+                        "display_name": "mal",
+                        "sample_type": 0
+                    }
+                ]
+            }
+        },
+        "security_categories": [
+            [
+                1,
+                2,
+                3
+            ]
+        ],
+        "securities": [
+            ["i"]
+        ],
+        "markets": [
+            "DCE"
+        ],
+        "sample_granularities": {
+            "type": 0,
+            "cycles": [
+                60
+            ]
+        }
+    }
+}
