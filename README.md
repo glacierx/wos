@@ -16,7 +16,7 @@ Wolverine OS provides two Docker image families:
 
 Both Docker images provide a convenient and portable way to work with Wolverine OS. They allow you to quickly set up and configure an environment for developing and testing trading strategies, without having to worry about dependencies or installation issues. Whether you're a quantitative trader, a financial analyst, or a software developer, Wolverine OS Docker images provide a powerful and flexible platform for developing and testing trading strategies in a secure and reliable environment.
 
-`wos-dev-s` is an excellent all-in-one starting point that is suitable for individual or medium team users with small to medium data and computing scale requirements. However, it is not yet ready for use in very large-scale practices, such as providing data and computing capabilities to a large community. For such use cases, Kubernetes can be used to extend wos-dev-s to a highly scalable state, allowing for the use of many CPUs and GPUs across multiple physical or virtual hosts. With Kubernetes, Wolverine OS can scale to meet the needs of even the most demanding trading strategies and financial quantitative experiments.
+`wos-dev-s` is an excellent all-in-one starting point that is suitable for individual or medium team users with small to medium data and computing scale requirements. However, it is not yet ready for use in very large-scale practices, such as providing data and computing capabilities to a large community which is the designated function scope of our project. For such use cases, Kubernetes can be used to extend wos-dev-s to a highly scalable state, allowing for the use of many CPUs and GPUs across multiple physical or virtual hosts. With Kubernetes, Wolverine OS can scale to meet the needs of even the most demanding trading strategies and financial quantitative experiments.
 
 ### Intel X86_64 architectures
 
@@ -103,14 +103,18 @@ Whether you're a quantitative trader, a financial analyst, or a software develop
 
 #### Feynman Language
 
-Feynman language is based on popular single ticker indicator language which can easily be found in Wind(万得) and Straight Flush(同花顺) and a wide range of similar competitors.
+Feynman language is based on a popular single-ticker indicator language that can be found in Wind (万得), Straight Flush (同花顺), and many similar competitors. However, Feynman language offers more features than the original version of the indicator language, including:
 
-Feynman language has more features than the orignal version of indicator language including:
+* **User-defined functions**: users can define their own functions and incorporate them with their dedicate designed python algorithm models.
 
-* User defined functions
-* Global cross references
-* Doodles
-* Seamless data interface from global and private dual environments
+* **Global cross-references**: Feynman language allows for cross-referencing data from both the user-authored indicators or those indicators user authorized to access. Fields of those indicators can be referenced in one piece of formula easily.
+
+* **Doodles**: users can create custom graphical elements and annotations to enhance their analysis and visualization of market data.
+
+* **Seamless data interface**: Feynman language provides a seamless interface between global and private dual environments, making it easy to access and analyze data from multiple sources.
+
+
+Overall, Feynman language provides a powerful and flexible platform for developing and testing trading strategies in Wolverine OS. Whether you're a quantitative trader, a financial analyst, or a software developer, Feynman language offers a range of features and capabilities that make it easy to build sophisticated trading strategies and algorithms.
 
 BOLL
 
@@ -122,11 +126,31 @@ UPR:(BBI+P*STD(BBI,N)),LINETHICK1, COLORFFA13B;
 MID: BBI, LINETHICK1, COLOR7E7AFF;
 ```
 
+More dedicated example used with python algorithm and cross referencing.
 
+```
+xref: w = "{market}/{code}/TQF1210_1H_L3/wp";
+line(time_tag[1],80,time_tag,80,"COLOR:00BCD4,LINETHICK:1,STYLE:solid");
+line(time_tag[1],-80,time_tag,-80,"COLOR:00BCD4,LINETHICK:1,STYLE:solid");
+wp: w, LINETHICK:2, COLOR:FF9800,STYLE:line;
+```
+
+Here `w` is a cross reference to a field `wp` of a python model named `TQF1210_1H_L3` developed by our user.
 
 ### Model Development
 
+Wolverine OS is designed for dedicated quantitative model development and experimentation. It provides a powerful platform for developing quantitative models ranging from simple dual moving average trend following strategies to deep neural network-based models.
+
+For integrated graphical development environments, VSCode is a popular choice. Users can use VSCode in native or remote mode to develop, debug, and monitor their models. Wolverine OS also supports a range of other development environments and tools, making it easy to work with the platform in a way that best suits your needs and preferences.
+
+
 #### Backtest
+
+Backtesting is a critical process for quantitative model development and experimentation. Wolverine OS provides a flexible and powerful backtesting subsystem that supports multiple development languages, including Python3, which is the language we highly recommend.
+
+The core and resource-intensive parts of the backtesting subsystem are developed using high-performance C++ language, with a variety of language bindings provided. Both single CPU core mode and multiple CPU core mode are supported, and in the latter case, a cluster of physical hosts or GPUs can be used to accelerate the process significantly.
+
+Users can choose to use an IDE within the application or VSCode for backtesting, and auto code completion and model templates are available to streamline the process. With Wolverine OS, you can easily develop and test sophisticated quantitative models and trading strategies, giving you the tools you need to succeed in today's dynamic financial markets.
 
 #### Indictator
 
