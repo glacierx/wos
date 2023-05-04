@@ -1,5 +1,8 @@
 # Getting started
 
+
+[![Alt text](https://img.youtube.com/vi/y5BV-Dpx3iM/0.jpg)](https://www.youtube.com/watch?v=y5BV-Dpx3iM)
+
 ![alt text](docs/imgs/wos-portal.png)
 ![alt text](docs/imgs/wos-algo.png)
 ![alt text](docs/imgs/wos-monitor.png)

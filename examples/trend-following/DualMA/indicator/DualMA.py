@@ -58,7 +58,7 @@ class SampleQuote(pcts3.sv_object):
         self.turnover: float = 0.0
         self.meta_name = 'SampleQuote'
         self.revision = (1 << 32)-1
-        self.namespace = pc.namespace_global
+        # self.namespace = pc.namespace_global
 
 
 class DualMA(pcts3.sv_object):
@@ -79,18 +79,24 @@ class DualMA(pcts3.sv_object):
             cache[key] = DualMA()
             x = cache[key]
             x.granularity = granularity
+            x.market = market
+            x.code = code
+            x.revision = (1<<32) - 1
+            x.load_def_from_dict(metas)
+            
         return cache[key]
 
     def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
+        super().__init__(*args, **kwargs)
         self.meta_name = 'DualMA'
         self.namespace = pc.namespace_private
         self.mal: float = 0.0
         self.mas: float = 0.0
         self.direction: int = -1
         self.prices: list = []
+        self.persistent = True
 
-    def on_sample_quote(self, q: SampleQuote):
+    async def on_sample_quote(self, q: SampleQuote):
         '''
         Calculate DualMA value according to the latest candle stick
         '''
@@ -221,7 +227,7 @@ async def on_bar(_bar: pc.StructValue):
         sample_quote.from_sv(_bar)
         dualma: DualMA = DualMA.find(sample_quote.market, sample_quote.code)
         s = await dualma.on_sample_quote(sample_quote)
-        ret.append(s.to_sv())
+        ret.append(s.copy_to_sv())
     return ret
 
 

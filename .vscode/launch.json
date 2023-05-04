@@ -32,8 +32,7 @@
                 "--tm", "ws://127.0.0.1:8000/tm",
                 "--rails", "http://127.0.0.1:8000/private-api",
                 "--tm-master", "127.0.0.1:3102",
-                "--user", "+8618888888888",
-                "--password", "5992e731ac2734d159b082e889f7920835e28bae"
+                "--token", "c905ddbe44da94081f27b9f9602e3b8e4e8546b9dfa1629514c64a5099bb77596385fea3f9928abf2fdc09aae88387641e91e55087908711d93243817c312b2f"
             ],
             "cwd": "${workspaceRoot}/",
             "envFile": "~/.env"
