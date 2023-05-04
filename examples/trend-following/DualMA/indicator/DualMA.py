@@ -49,7 +49,7 @@ class SampleQuote(pcts3.sv_object):
         return cls.instance
 
     def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
+        super().__init__(*args, *kwargs)
         self.open: float = 0.0
         self.close: float = 0.0
         self.high: float = 0.0
@@ -74,6 +74,7 @@ class DualMA(pcts3.sv_object):
     @classmethod
     def find(cls, market, code):
         key = (market, code)
+        cache = cls.cache
         if key not in cache:
             cache[key] = DualMA()
             x = cache[key]
@@ -93,7 +94,7 @@ class DualMA(pcts3.sv_object):
         '''
         Calculate DualMA value according to the latest candle stick
         '''
-        if q.timetag > self.timetag or len(self.prices) == 0:
+        if self.timetag is None or q.timetag > self.timetag or len(self.prices) == 0:
             self.prices.append(q.close)
         else:
             self.prices[-1] = q.close
@@ -103,10 +104,13 @@ class DualMA(pcts3.sv_object):
         x, y = DualMA.time_window
         if len(self.prices) > y:
             self.prices = self.prices[-y:]
-
-        self.mal = np.sum(self.prices[-y:])
-        self.mas = np.sum(self.prices[-x:])
-        self.direction = -1 if self.mal > self.mas else 1
+        X, Y = self.prices[-x:], self.prices[-y:]
+        self.mal = np.sum(Y)/len(Y)
+        self.mas = np.sum(X)/len(X)
+        if np.isclose(self.mal, self.mas):
+            self.direction = 0
+        else:
+            self.direction = -1 if self.mal > self.mas else 1
         return self
 
 
@@ -140,9 +144,6 @@ async def on_tradeday_begin(market, tradeday, time_tag, time_string):
     time_tag: UTC time stamp
     time_string: YYYY-mm-ddTHH:MM::SS+TZ
     """
-    global cache
-    _market = market.encode('utf-8')
-    cache[_market] = {}
     pass
 
 
@@ -215,6 +216,9 @@ async def on_bar(_bar: pc.StructValue):
     ret = []
     if _bar.get_meta_id() == sample_quote.meta_id and \
             _bar.get_namespace() == sample_quote.namespace:
+        sample_quote.market = _bar.get_market()
+        sample_quote.code = _bar.get_stock_code()
+        sample_quote.from_sv(_bar)
         dualma: DualMA = DualMA.find(sample_quote.market, sample_quote.code)
         s = await dualma.on_sample_quote(sample_quote)
         ret.append(s.to_sv())

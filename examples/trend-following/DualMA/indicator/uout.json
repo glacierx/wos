@@ -18,7 +18,7 @@
                         "sample_type": 0
                     },
                     {
-                        "field_type": "int",
+                        "field_type": "integer",
                         "precision": 6,
                         "multiple": 1,
                         "display_name": "direction",

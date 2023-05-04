@@ -1,0 +1,42 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "dual-ma",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "python": "/home/wolverine/.pyenv/python3/bin/python",
+            "module": "calculator3_test",
+            "args": [
+                "--testcase", "/workspaces/wos/examples/trend-following/DualMA/indicator",
+                "--algoname", "DualMA",
+                "--sourcefile", "DualMA.py",
+                "--start", "20221001000000",
+                "--end", "20230310000000",
+                "--granularity","60",
+                "--category", "1",
+                "--is-managed", "1",
+                "--restore-length", "3456000000",
+                "--tm", "ws://127.0.0.1:8000/tm",
+                "--rails", "http://127.0.0.1:8000/private-api",
+                "--tm-master", "127.0.0.1:3102",
+                "--user", "+8618888888888",
+                "--password", "5992e731ac2734d159b082e889f7920835e28bae"
+            ],
+            "cwd": "${workspaceRoot}/",
+            "envFile": "~/.env"
+        }
+    ]
+}
