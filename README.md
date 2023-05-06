@@ -1,10 +1,8 @@
 # Getting started
 
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/y5BV-Dpx3iM" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
+## Tutorial
+
+[![Alt text](https://img.youtube.com/vi/y5BV-Dpx3iM/0.jpg)](https://www.youtube.com/watch?v=y5BV-Dpx3iM)
 
 ![alt text](docs/imgs/wos-portal.png)
 ![alt text](docs/imgs/wos-algo.png)
