@@ -58,7 +58,7 @@ class SampleQuote(pcts3.sv_object):
         self.turnover: float = 0.0
         self.meta_name = 'SampleQuote'
         self.revision = (1 << 32)-1
-        # self.namespace = pc.namespace_global
+        self.namespace = pc.namespace_global
 
 
 class DualMA(pcts3.sv_object):
